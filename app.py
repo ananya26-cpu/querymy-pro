@@ -1,3 +1,4 @@
+ % cat ~/Downloads/querymy-main/app.py
 import streamlit as st
 import pandas as pd
 import yfinance as yf
@@ -15,7 +16,7 @@ st.set_page_config(page_title="QueryMy Pro", page_icon="⚡", layout="wide")
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
-* { font-family: 'Syne', sans-sif !important; }
+* { font-family: 'Syne', sans-serif !important; }
 .stApp { background-color: #020408 !important; background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px); background-size: 48px 48px; }
 section[data-testid="stSidebar"] { background: linear-gradient(180deg, #070d14 0%, #050a10 100%) !important; border-right: 1px solid #0f2035 !important; }
 section[data-testid="stSidebar"] * { color: #a8c8e8 !important; }
