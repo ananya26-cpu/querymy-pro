@@ -156,3 +156,54 @@ Be specific with numbers. Sound like a Bloomberg analyst."""
         messages=[{{"role": "user", "content": prompt}}]
     )
     return response.choices[0].message.content.strip()
+                
+
+def clean_data_suggestions(data_summary, df_info):
+    prompt = f"""You are a data cleaning expert.
+
+Dataset info:
+{data_summary}
+
+Column details:
+{df_info}
+
+Identify ALL data quality issues and return ONLY a JSON array like this:
+[
+  {{"issue": "Missing values in Sales column", "fix": "fill_mean", "column": "Sales", "severity": "High"}},
+  {{"issue": "Duplicate rows found", "fix": "drop_duplicates", "column": "all", "severity": "Medium"}}
+]
+
+fix must be one of: fill_mean, fill_median, fill_zero, fill_unknown, drop_duplicates, drop_negative, strip_whitespace
+Return ONLY the JSON array, nothing else."""
+
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response.choices[0].message.content.strip()
+
+
+def generate_dashboard_config(data_summary, columns):
+    prompt = f"""You are a data visualization expert.
+
+Dataset: {data_summary}
+Available columns: {columns}
+
+Generate exactly 4 charts that tell the best business story from this data.
+Return ONLY a JSON array:
+[
+  {{"chart_type": "bar", "title": "Sales by Category", "x_col": "Category", "y_col": "Sales"}},
+  {{"chart_type": "line", "title": "Revenue Over Time", "x_col": "Date", "y_col": "Revenue"}},
+  {{"chart_type": "pie", "title": "Orders by Region", "x_col": "Region", "y_col": "Orders"}},
+  {{"chart_type": "bar", "title": "Top Products by Profit", "x_col": "Product", "y_col": "Profit"}}
+]
+
+Use ONLY exact column names from the list provided.
+Return ONLY the JSON array, nothing else."""
+
+    response = client.chat.completions.create(
+        model="llama-3.1-8b-instant",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return response.choices[0].message.content.strip()
+
