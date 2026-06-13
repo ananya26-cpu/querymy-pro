@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import yfinance as yf
@@ -17,6 +16,8 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap');
 * { font-family: 'Syne', sans-serif !important; }
+.stButton > button { background: linear-gradient(135deg, #0066ff, #00d4ff) !important; color: white !important; border: none !important; border-radius: 8px !important; font-weight: 600 !important; }
+.stLinkButton > a { background: linear-gradient(135deg, #0066ff, #00d4ff) !important; color: white !important; border: none !important; border-radius: 8px !important; font-weight: 600 !important; }
 .stApp { background-color: #020408 !important; background-image: linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px); background-size: 48px 48px; }
 section[data-testid="stSidebar"] { background: linear-gradient(180deg, #070d14 0%, #050a10 100%) !important; border-right: 1px solid #0f2035 !important; }
 section[data-testid="stSidebar"] * { color: #a8c8e8 !important; }
@@ -64,7 +65,7 @@ with st.sidebar:
     # THEME TOGGLE
     if "theme" not in st.session_state:
         st.session_state["theme"] = "dark"
-    theme_label = "☀️ Light Mode" if st.session_state["theme"] == "dark" else "🌙 Dark Mode"
+    theme_label = "Light Mode" if st.session_state["theme"] == "dark" else "Dark Mode"
     if st.button(theme_label, key="theme_toggle"):
         st.session_state["theme"] = "light" if st.session_state["theme"] == "dark" else "dark"
         st.rerun()
